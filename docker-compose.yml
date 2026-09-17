@@ -1,0 +1,14 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./data/habit_tracker.db
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-me-in-production}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=60
+    volumes:
+      - habit_data:/app/data
+
+volumes:
+  habit_data:
